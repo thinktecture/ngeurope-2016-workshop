@@ -13,38 +13,5 @@
 * MacOSX and Linux users need to install [Wine](https://wiki.winehq.org/) (for executing the Electron Windows build task)
 * Download and install [Atom](https://atom.io/) or another editor of your choice (free: `notepad`, [Visual Studio Code](https://code.visualstudio.com/); commercial: [Sublime Text](https://www.sublimetext.com/), [WebStorm](https://www.jetbrains.com/webstorm/))
 
-## Building
-The npm scripts will build iOS, Windows UWP, Android apps as well as desktop applications for Mac OSX, Windows and Linux.
-To get it working, please do the following:
-
-* After cloning the repo: `npm i --no-progress` within the root folder of this repository
-* Run `npm run watch-web` to start a live server, which is best when developing the app
-* Run `npm run watch-all` to orchestrate the cordova ios app, the electron app and the webapp with live reloading.
-* Run `npm run start-web` to start the webapp without injecting upcoming changes
-* Release Mode: Use the following npm scripts to build the apps in release mode
-    * Run `npm run dist-web` to build the web app
-    * Run `npm run dist-mobile-all` to build all phone related apps
-    * Run `npm run dist-desktop-all` to build all desktop related apps
-
-## Running
-
-### Web
-
-Use `npm run start-web` as mentioned above to start the browser version of BoardZ.
-
-### Cordova
-
-To run the cordova project, open a terminal and point it to `dist/mobile`. Use one of the following commands to start:
-
-* `npm run start-mobile-ios`: Runs the iOS version of BoardZ. Requires a Mac
-* `npm run start-mobile-ios`: Runs the Android version of BoardZ. Requires Android SDK to be installed and at least a simulator
-
-### Electron
-
-To start the electron packaged app, go to `build/desktop/build` and open one of the directories suiting your current operating system. Then open the executable as used to.
-
-## Supported platforms
-* Any modern web browser (Chrome, Firefox, Edge, Safari) by simply hosting it
-* Mobile platforms (iOS, Android, Windows) by packaging the app using Cordova
-* Desktop platforms (Windows, Mac OS X, Linux) by packaging the app using Electron
-
+## Building & running
+Stay tuned for the workshop :-)
