@@ -1,10 +1,10 @@
 let config = {
     sources: {
-        base: 'src/Boardz',
+        base: 'src/BoardZ',
         baseModules: 'node_modules',
-        scripts: ['src/Boardz/**/*.ts', 'typings/index.d.ts'],
-        templates: ['src/Boardz/app/**/*.html'],
-        styles: ['src/Boardz/css/**/*.css'],
+        scripts: ['src/BoardZ/**/*.ts', 'typings/index.d.ts'],
+        templates: ['src/BoardZ/app/**/*.html'],
+        styles: ['src/BoardZ/css/**/*.css'],
         vendorStyles: [
             './src/BoardZ/vendor/bootstrap/css/bootstrap.css',
             './src/BoardZ/vendor/admin-lte/css/AdminLTE.css',
@@ -13,9 +13,9 @@ let config = {
             './src/BoardZ/vendor/pNotify/pnotify.custom.css',
             './src/BoardZ/vendor/leaflet-js/leaflet.css'
         ],
-        assets: ['src/Boardz/assets/**/*'],
-        indexHtml: 'src/Boardz/index.html',
-        javaScripts: ['src/Boardz/cordova.js', 'src/Boardz/system.setup.js'],
+        assets: ['src/BoardZ/assets/**/*'],
+        indexHtml: 'src/BoardZ/index.html',
+        javaScripts: ['src/BoardZ/cordova.js', 'src/BoardZ/system.setup.js'],
         vendorScripts: [
             './node_modules/core-js/client/shim.min.js',
             './node_modules/zone.js/dist/zone.js',
@@ -106,7 +106,6 @@ let config = {
             //TODO: implement
         }
     },
-
 };
 
 
