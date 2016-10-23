@@ -62,7 +62,7 @@ gulp.task('build-splash-and-icon', (done) => {
     done();
 });
 
-gulp.task('mobile:build:all', (done) => {
+gulp.task('build-mobile-all', (done) => {
     run(
         'build-web',
         'mobile:clean',
