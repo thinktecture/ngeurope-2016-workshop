@@ -6,7 +6,6 @@ const config = require('./config'),
     del = require('del'),
     sourcemaps = require('gulp-sourcemaps'),
     embed = require('gulp-angular-embed-templates'),
-    count = require('gulp-count'),
     typeScript = require('gulp-typescript'),
     merge = require('merge2'),
     plumber = require('gulp-plumber'),
@@ -19,7 +18,6 @@ const config = require('./config'),
     uglify = require('gulp-uglify'),
     browserSync = require('browser-sync'),
     browserSyncConfig = require('../configs/dev/browserSync');
-
 
 // public tasks
 
@@ -84,14 +82,13 @@ function transpileScripts(files, typeScriptConfig) {
                 quotes: true
             }
         }))
-        .pipe(count('Transpiled ## files'))
         .pipe(typeScript(typeScriptConfig.compilerOptions))
         .on('end', () => browserSync.reload());
 
     return merge([
         tsResult.dts.pipe(gulp.dest(config.targets.build.web)),
         tsResult.js
-           // .pipe(uglify())
+        // .pipe(uglify())
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(config.targets.build.web))
     ]);
