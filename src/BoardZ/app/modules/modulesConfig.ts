@@ -30,7 +30,6 @@ import {GameDetailsComponent} from '../components/games/details';
 import {GamesRootComponent} from '../components/games/gamesRoot';
 import {GameDetailsResolver} from '../resolvers/gameDetailsResolver';
 import {CameraService} from '../services/cameraService';
-import {MobileCameraService} from '../services/mobileCameraService';
 import {DesktopCameraService} from '../services/desktopCameraService';
 import {PictureItComponent} from '../components/pictureIt/pictureIt';
 import {LocateItComponent} from '../components/locateIt/locateIt';
@@ -102,11 +101,7 @@ export namespace ModuleConfiguration {
 
         public static providers = [
             {
-                provide: CameraService, useFactory: (() => {
-                return (platformInformationService: PlatformInformationService): CameraService => {
-                    return platformInformationService.isMobile ? new MobileCameraService() : new DesktopCameraService();
-                };
-            })(), deps: [PlatformInformationService]
+                provide: CameraService, useClass: DesktopCameraService
             },
             GeolocationService
         ];
