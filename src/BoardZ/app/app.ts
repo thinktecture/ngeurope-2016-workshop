@@ -40,6 +40,7 @@ export class BoardzAppComponent implements AfterViewInit {
             this._notificationService.notifyInformation(message);
         });
 
-        this._nativeIntegrationService.registerNavigationHook();
+        // call into nativeIntegrationService
+
     }
 }
