@@ -32,7 +32,6 @@ import {GameDetailsResolver} from '../resolvers/gameDetailsResolver';
 import {CameraService} from '../services/cameraService';
 import {MobileCameraService} from '../services/mobileCameraService';
 import {DesktopCameraService} from '../services/desktopCameraService';
-import {PictureItComponent} from '../components/pictureIt/pictureIt';
 import {LocateItComponent} from '../components/locateIt/locateIt';
 import {GeolocationService} from '../services/geolocationService';
 
@@ -94,11 +93,11 @@ export namespace ModuleConfiguration {
 
     export class Shared {
 
-        public static declarations = [PictureItComponent, LocateItComponent];
+        public static declarations = [LocateItComponent];
 
         public static imports = [CommonModule, FormsModule];
 
-        public static exports = [PictureItComponent, LocateItComponent];
+        public static exports = [LocateItComponent];
 
         public static providers = [
             {
