@@ -7,12 +7,11 @@ const config = require('./config'),
     sh = require('shelljs'),
     rename = require('gulp-rename'),
     browserSync = require('browser-sync'),
-    count = require('gulp-count'),
     replace = require('gulp-replace'),
     os = require('os');
 
 // public tasks
-
+// build with dev config
 gulp.task('build-mobile-ios', (done) => {
     buildMobileApp('ios', done);
 });
@@ -25,6 +24,20 @@ gulp.task('build-mobile-windows', (done) => {
     buildMobileApp('windows', done);
 });
 
+gulp.task('build-mobile-all', (done) => {
+    run(
+        'build-web',
+        'mobile:clean',
+        'mobile:build:copy-dev-config',
+        'mobile:build:copy-sources',
+        'mobile:build:remove-fake-script',
+        'mobile:build:resources',
+        'mobile:build:copy:hooks',
+        ['mobile:build:ios', 'mobile:build:android', 'mobile:build:windows'],
+        done);
+});
+
+// start mobile app
 gulp.task('start-mobile-ios', (done) => {
     runMobileApp('ios', done);
 });
@@ -37,8 +50,20 @@ gulp.task('start-mobile-windows', (done) => {
     runMobileApp('windows', done);
 });
 
+// create app packages (distribution config)
 gulp.task('package-mobile-all', (done) => {
-    run('dist-mobile-ios', 'dist-mobile-android', done);
+    run(
+        'build-web',
+        'mobile:clean',
+        'mobile:build:copy-dist-config',
+        'mobile:build:copy-sources',
+        'mobile:build:remove-fake-script',
+        'mobile:build:resources',
+        'mobile:build:copy:hooks',
+        'build-splash-and-icon',
+        ['mobile:build:ios', 'mobile:build:android', 'mobile:build:windows'],
+        done
+    );
 });
 
 gulp.task('package-mobile-ios', (done) => {
@@ -62,30 +87,13 @@ gulp.task('build-splash-and-icon', (done) => {
     done();
 });
 
-gulp.task('build-mobile-all', (done) => {
-    run(
-        'build-web',
-        'mobile:clean',
-        'mobile:build:copy-dist-config',
-        'mobile:build:copy-sources',
-        'mobile:build:remove-fake-script',
-        'mobile:build:resources',
-        'mobile:build:copy:hooks',
-        'build-splash-and-icon',
-        ['mobile:build:ios', 'mobile:build:android', 'mobile:build:windows'],
-        done);
-});
-
-
 // private tasks
-
 function buildMobileApp(platform, done) {
     run(
         'mobile:clean',
         'mobile:build:copy-dev-config',
         'mobile:build:copy-sources',
         'mobile:build:remove-fake-script',
-
         'mobile:build:resources',
         'mobile:build:copy:hooks',
         'mobile:build:' + platform,
@@ -97,7 +105,7 @@ function distributeMobileApp(platform, done) {
     run(
         'mobile:clean',
         'mobile:build:copy-dist-config',
-        'mobile:build:copy-sources-'+ platform,
+        'mobile:build:copy-sources-' + platform,
         'mobile:build:remove-fake-script',
         'mobile:build:resources',
         'mobile:build:copy:hooks',
@@ -138,8 +146,7 @@ function copySources(files, platform) {
             sh.exec('cordova prepare ' + platform);
             sh.cd(currentDir);
             browserSync.reload();
-        })
-        .pipe(count('Copied ## files to Cordova www folder'));
+        });
 }
 
 gulp.task('mobile:build:copy-dev-config', () => {
@@ -178,7 +185,6 @@ function prepareAndBuildNativeProject(platform, done) {
 
 function runMobileApp(platform, done) {
     var currentDir = sh.pwd();
-    console.log(config.targets.build.mobile);
     sh.cd(config.targets.build.mobile);
     sh.exec('cordova run ' + platform);
     sh.cd(currentDir);

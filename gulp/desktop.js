@@ -10,7 +10,6 @@ const config = require('./config'),
 
 
 // public tasks
-
 gulp.task('package-desktop-all', (done) => {
     run(
         'build-web',
