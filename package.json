@@ -9,24 +9,27 @@
   },
   "scripts": {
     "postinstall": "typings install",
-    "build-desktop-all": "gulp build-desktop-all",
-    "build-desktop-windows": "gulp build-desktop-win",
-    "build-desktop-osx": "gulp build-desktop-osx",
-    "build-desktop-linux": "gulp build-desktop-linux",
-    "build-mobile-all": "gulp mobile:build:all",
-    "build-mobile-android": "gulp build-mobile-android",
-    "build-mobile-ios": "gulp build-mobile-ios",
-    "build-mobile-windows": "gulp build-mobile-windows",
+
     "build-web": "gulp build-web",
-    "dist-desktop-all": "gulp build-web && gulp build-desktop-all",
-    "dist-mobile-all": "gulp build-web && gulp dist-mobile-all",
-    "start-desktop": "gulp start-desktop",
-    "start-mobile-ios": "gulp start-mobile-ios",
-    "start-mobile-android": "gulp start-mobile-android",
-    "start-mobile-windows": "gulp start-mobile-windows",
-    "start-web": "npm run build-web && npm run watch-web",
-    "watch-all": "gulp watch-all",
-    "watch-web": "gulp watch-web"
+    "build-mobile-ios": "gulp build-mobile-ios",
+    "build-mobile-android": "gulp build-mobile-android",
+    "build-mobile-windows": "gulp build-mobile-windows",
+    "build-mobile-all": "gulp build-mobile-all",
+
+    "package-desktop-windows": "gulp package-desktop-win",
+    "package-desktop-macos": "gulp package-desktop-macos",
+    "package-desktop-linux": "gulp package-desktop-linux",
+    "package-desktop-all": "gulp package-desktop-all",
+    "package-mobile-ios": "gulp package-mobile-ios",
+    "package-mobile-android": "gulp package-mobile-android",
+    "package-mobile-windows": "gulp package-mobile-windows",
+    "package-mobile-all": "gulp package-mobile-all",
+
+
+    "watch-web": "npm run build-web && gulp watch-web",
+    "watch-mobile-android": "npm run build-mobile-android && gulp start-mobile-android",
+    "watch-mobile-ios": "npm run build-mobile-ios && gulp start-mobile-ios",
+    "watch-mobile-windows": "npm run build-mobile-windows && gulp start-mobile-windows"
   },
   "author": "Thinktecture AG <office@thinktecture.com>",
   "bugs": {

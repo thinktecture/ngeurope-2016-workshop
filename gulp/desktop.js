@@ -11,20 +11,7 @@ const config = require('./config'),
 
 // public tasks
 
-gulp.task('dist-desktop-all', function(){
-    run(
-        'dist-web',
-        'desktop:clean',
-        [
-            'desktop:build:copy-sources',
-            'desktop:build:copy-electron-sources'
-        ],
-        'desktop:build:all',
-        done
-    )
-});
-
-gulp.task('build-desktop-all', (done) => {
+gulp.task('package-desktop-all', (done) => {
     run(
         'build-web',
         'desktop:clean',
@@ -37,7 +24,7 @@ gulp.task('build-desktop-all', (done) => {
     )
 });
 
-gulp.task('build-desktop-osx', (done) => {
+gulp.task('package-desktop-macos', (done) => {
     run(
         'build-web',
         'desktop:clean',
@@ -50,7 +37,7 @@ gulp.task('build-desktop-osx', (done) => {
     )
 });
 
-gulp.task('build-desktop-win', (done) => {
+gulp.task('package-desktop-win', (done) => {
     run(
         'build-web',
         'desktop:clean',
@@ -63,7 +50,7 @@ gulp.task('build-desktop-win', (done) => {
     )
 });
 
-gulp.task('build-desktop-linux', (done) => {
+gulp.task('package-desktop-linux', (done) => {
     run(
         'build-web',
         'desktop:clean',
@@ -74,25 +61,6 @@ gulp.task('build-desktop-linux', (done) => {
         'desktop:build:linux',
         done
     )
-});
-
-/**
- *  Start electron and load content from localhost (for development)
- */
-gulp.task('start-desktop', (done) => {
-    run(
-        'desktop:clean',
-        [
-            'desktop:build:copy-sources',
-            'desktop:build:copy-electron-sources'
-        ],
-        'start-electron-with-browser-sync',
-        done)
-});
-
-gulp.task('start-electron-with-browser-sync', (done) => {
-    shell.exec('node_modules/.bin/electron build/desktop/web --browsersync', { async: true });
-    done();
 });
 
 // private tasks
@@ -134,12 +102,15 @@ gulp.task('desktop:build:copy-electron-sources', () => {
 
 
 function buildAppFor(targetPlatform, target) {
+    let homeDir =  process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+
     return gulp.src(path.join(config.targets.build.desktopWeb, '**', '*'))
         .pipe(electron({
             version: '1.4.3',
             platform: targetPlatform,
             arch: 'x64',
             companyName: 'Thinktecture AG',
+            cache: path.join(homeDir, '.electron'),
             linuxExecutableName: 'BoardZ',
             darwinIcon: path.join(config.sources.resources, 'icon.icns'),
             winIcon: path.join(config.sources.resources, 'icon.ico')

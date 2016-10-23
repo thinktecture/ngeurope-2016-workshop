@@ -5,6 +5,6 @@ module.exports = {
         baseDir: './build/web',
         middleware: { 0: null }
     },
-    open: false,
+    open: true,
     injectChanges: true
 };

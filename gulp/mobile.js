@@ -37,19 +37,19 @@ gulp.task('start-mobile-windows', (done) => {
     runMobileApp('windows', done);
 });
 
-gulp.task('dist-mobile-all', (done) => {
+gulp.task('package-mobile-all', (done) => {
     run('dist-mobile-ios', 'dist-mobile-android', done);
 });
 
-gulp.task('dist-mobile-ios', (done) => {
+gulp.task('package-mobile-ios', (done) => {
     distributeMobileApp('ios', done)
 });
 
-gulp.task('dist-mobile-android', (done) => {
+gulp.task('package-mobile-android', (done) => {
     distributeMobileApp('android', done)
 });
 
-gulp.task('dist-mobile-windows', (done) => {
+gulp.task('package-mobile-windows', (done) => {
     distributeMobileApp('windows', done);
 });
 
