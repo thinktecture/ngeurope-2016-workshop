@@ -22,7 +22,6 @@ import {LogService} from '../services/logService';
 import {GamesService} from '../services/gamesService';
 import {PlayersService} from '../services/playersService';
 import {NotificationService} from '../services/notificationService';
-import {PlatformInformationService} from '../services/platformInformationService';
 import {UiNotificationService} from '../services/uiNotificationService';
 import {SignalRService} from '../services/signalrService';
 import {GameListComponent} from '../components/games/list';
@@ -34,6 +33,8 @@ import {DesktopCameraService} from '../services/desktopCameraService';
 import {PictureItComponent} from '../components/pictureIt/pictureIt';
 import {LocateItComponent} from '../components/locateIt/locateIt';
 import {GeolocationService} from '../services/geolocationService';
+import {PlatformInformationService} from '../services/platformInformationService';
+import {MobileCameraService} from '../services/mobileCameraService';
 
 export namespace ModuleConfiguration {
 
@@ -101,10 +102,29 @@ export namespace ModuleConfiguration {
 
         public static providers = [
             {
-                provide: CameraService, useClass: DesktopCameraService
+                provide: CameraService, useFactory: (()=>{
+                    return (platformInformationService: PlatformInformationService): CameraService => {
+                        return platformInformationService.isMobile? new MobileCameraService() : new DesktopCameraService();
+                    };
+                })(), deps: [PlatformInformationService]
             },
             GeolocationService
         ];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
