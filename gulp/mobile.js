@@ -80,9 +80,9 @@ gulp.task('package-mobile-windows', (done) => {
 
 gulp.task('build-splash-and-icon', (done) => {
     var currentDir = sh.pwd();
-    sh.cd(config.targets.build.mobile);
-    sh.exec('cd ../../node_modules/.bin/cordova-splash');
-    sh.exec('cd ../../node_modules/.bin/cordova-icon');
+    sh.cd(path.join(config.targets.build.mobile));
+    sh.exec(`${path.join('../../node_modules/.bin/', 'cordova-splash')}`);
+    sh.exec(`${path.join('../../node_modules/.bin/', 'cordova-icon')}`);
     sh.cd(currentDir);
     done();
 });
