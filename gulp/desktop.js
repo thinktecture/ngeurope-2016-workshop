@@ -111,7 +111,6 @@ function buildAppFor(targetPlatform, target) {
             companyName: 'Thinktecture AG',
             cache: path.join(homeDir, '.electron'),
             linuxExecutableName: 'BoardZ',
-            token: 'dc6fc2a39bd748c28f5b435700527fa4fa326bad',
             darwinIcon: path.join(config.sources.resources, 'icon.icns'),
             winIcon: path.join(config.sources.resources, 'icon.ico')
         }))
